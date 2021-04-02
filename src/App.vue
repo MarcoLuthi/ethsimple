@@ -4,7 +4,7 @@
         <div class="md:flex md:items-center md:justify-between mb-16">
             <div class="flex-1 min-w-0">
                 <h2 class=" text-xl font-bold leading-7 text-gray-900 sm:text-xl sm:truncate">
-                    Please set metamask to Ropsten
+                    Please set metamask to Ropsten – {{totalSupply}} Sold
                 </h2>
             </div>
             <div class="mt-4 flex md:mt-0 md:ml-4">
@@ -62,7 +62,7 @@ export default {
           }.bind(this), 2000);
         }else{
           this.ethers = new ethers.providers.Web3Provider(window.ethereum)
-          this.contractAddress ='0x43CF70f925B3e92beB68824311e6CF75a31eef74'
+          this.contractAddress ='0x8120d2990D068376ac349373A7d4dDa7901F2c6a'
           this.signer =  this.ethers.getSigner()
 
           this.initApp()
@@ -86,6 +86,7 @@ export default {
           ethBalance: '0',
           accounts: [],
           status: [],
+          totalSupply: null,
           account: null,
           contract: null,
           contractAddress: "0x43CF70f925B3e92beB68824311e6CF75a31eef74",
@@ -126,6 +127,8 @@ methods: {
             this.contractAddress,
             this.contractAbi.abi,
             this.signer);
+
+
         },
         async sold(item){
           if(this.connected === true){
@@ -155,6 +158,11 @@ methods: {
 
           });
 
+        },
+        async getTotalSupply(){
+          this.contract.totalSupply().then(transaction => {
+            this.totalSupply = transaction
+          })
         },
         check(item){
           setTimeout(function () {
@@ -201,6 +209,7 @@ methods: {
  watch: {
    connected: function(val){
      if(val === true){
+       this.getTotalSupply()
        for (let i = 0; i < this.info.data.length; i++) {
         // Runs 5 times, with values of step 0 through 4.
         this.status.push({
