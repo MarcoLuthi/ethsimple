@@ -4,7 +4,7 @@
         <div class="md:flex md:items-center md:justify-between mb-16">
             <div class="flex-1 min-w-0">
                 <h2 class=" text-xl font-bold leading-7 text-gray-900 sm:text-xl sm:truncate">
-                    Please set metamask to Ropsten – {{totalSupply}} Sold
+                    Please set metamask to Ropsten – {{420 - totalSupply}} Available
                 </h2>
             </div>
             <div class="mt-4 flex md:mt-0 md:ml-4">
