@@ -55,14 +55,14 @@ export default {
       .then(response => (this.info = response)).then(() =>{
         if(!window.ethereum){
           this.signer = new ethers.providers.InfuraProvider('ropsten')
-          this.contractAddress ='0x1bfFf25D13F6c049D62CD01C1247e39a24A8ADcC'
+          this.contractAddress ='0x813e794a046Ce12Ac270660A0065f28132fc9220'
           this.initApp()
           setTimeout(function () {
             this.connected = true;
           }.bind(this), 2000);
         }else{
           this.ethers = new ethers.providers.Web3Provider(window.ethereum)
-          this.contractAddress ='0x1bfFf25D13F6c049D62CD01C1247e39a24A8ADcC'
+          this.contractAddress ='0x813e794a046Ce12Ac270660A0065f28132fc9220'
           this.signer =  this.ethers.getSigner()
 
           this.initApp()
@@ -210,7 +210,7 @@ methods: {
    connected: function(val){
      if(val === true){
        this.getTotalSupply()
-       for (let i = 0; i < this.info.data.length; i++) {
+       for (let i = 0; i < this.info.data.length+1; i++) {
         // Runs 5 times, with values of step 0 through 4.
         this.status.push({
           owned: false,
