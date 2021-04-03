@@ -55,14 +55,14 @@ export default {
       .then(response => (this.info = response)).then(() =>{
         if(!window.ethereum){
           this.signer = new ethers.providers.InfuraProvider('ropsten')
-          this.contractAddress ='0x8120d2990D068376ac349373A7d4dDa7901F2c6a'
+          this.contractAddress ='0x1bfFf25D13F6c049D62CD01C1247e39a24A8ADcC'
           this.initApp()
           setTimeout(function () {
             this.connected = true;
           }.bind(this), 2000);
         }else{
           this.ethers = new ethers.providers.Web3Provider(window.ethereum)
-          this.contractAddress ='0x8120d2990D068376ac349373A7d4dDa7901F2c6a'
+          this.contractAddress ='0x1bfFf25D13F6c049D62CD01C1247e39a24A8ADcC'
           this.signer =  this.ethers.getSigner()
 
           this.initApp()
@@ -90,7 +90,7 @@ export default {
           account: null,
           contract: null,
           contractAddress: "0x43CF70f925B3e92beB68824311e6CF75a31eef74",
-          contractAbi: require('@/NFT.json'),
+          contractAbi: require('@/WhenLambo.json'),
           txPending: false,
           txComplete: false,
           tokenSettings: {
